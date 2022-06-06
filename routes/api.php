@@ -15,9 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+ //Public routes
 Route::resource('products', ProductController::class);
 
+Route::get('/products/search/{name}', [ProductController::class, 'search']);
 
+//Protected routes
+Route::group(['middleware' => ['auth:sanctum']], function(){
+    
+});
 
 
 //Route::get('/products', [ProductController::class, 'index']);
@@ -25,6 +32,6 @@ Route::resource('products', ProductController::class);
 //Route::post('/products', [ProductController::class, 'store']);
 
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
